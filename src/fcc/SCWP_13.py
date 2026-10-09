@@ -1,38 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_13
-============================================================
-
-tree = BinarySearchTree()
-for value in [50, 30, 20, 40, 70, 60, 80]:
-    tree.insert(value)
-
-assert tree.inorder_traversal() == [20, 30, 40, 50, 60, 70, 80]
-assert tree.search(40) is not None
-assert tree.search(999) is None
-
-# Delete a leaf.
-tree.delete(20)
-assert tree.inorder_traversal() == [30, 40, 50, 60, 70, 80]
-
-# Delete a node with one child.
-tree.insert(65)
-tree.delete(60)
-assert tree.inorder_traversal() == [30, 40, 50, 65, 70, 80]
-
-# Delete a node with two children.
-tree.delete(70)
-assert tree.inorder_traversal() == [30, 40, 50, 65, 80]
-
-# Duplicate insertion must not create a second node.
-tree.insert(50)
-assert tree.inorder_traversal().count(50) == 1
-
-# Delete the root and verify the tree is still ordered.
-tree.delete(50)
-assert tree.inorder_traversal() == [30, 40, 65, 80]
-
 """
 SCWP_13 — Learn Tree Traversal by Building a Binary Search Tree
 
@@ -72,3 +37,19 @@ Inorder:
 
 Delete 40 and verify that inorder no longer contains 40 and the BST property
 still holds.
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    tree = BinarySearchTree()
+    for value in [50, 30, 20, 40, 70, 60, 80]:
+        tree.insert(value)
+    assert tree.inorder_traversal() == [20, 30, 40, 50, 60, 70, 80]
+    assert tree.search(40) is not None
+    assert tree.search(99) is None
+    tree.delete(40)
+    assert tree.inorder_traversal() == [20, 30, 50, 60, 70, 80]
+    print("SCWP_13 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

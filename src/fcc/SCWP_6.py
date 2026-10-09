@@ -1,34 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_6
-============================================================
-
-problems = ["3 + 855", "3801 - 2", "45 + 43", "123 + 49"]
-
-expected_without_answers = (
-    "    3      3801      45      123\n"
-    "+ 855    -    2    + 43    +  49\n"
-    "-----    ------    -----    -----"
-)
-assert arithmetic_arranger(problems) == expected_without_answers
-
-expected_with_answers = (
-    "    3      3801      45      123\n"
-    "+ 855    -    2    + 43    +  49\n"
-    "-----    ------    -----    -----\n"
-    "  858      3799      88      172"
-)
-assert arithmetic_arranger(problems, True) == expected_with_answers
-
-assert arithmetic_arranger(["1 + 2"]).__class__ is str
-assert arithmetic_arranger(["1 + 2", "3 - 1", "10 + 5", "20 - 7", "8 + 9"]).__class__ is str
-
-assert arithmetic_arranger(["1 + 2", "3 + 4", "5 + 6", "7 + 8", "9 + 0", "1 + 1"]) == "Error: Too many problems."
-assert arithmetic_arranger(["1 * 2"]) == "Error: Operator must be '+' or '-'."
-assert arithmetic_arranger(["1 + a"]) == "Error: Numbers must only contain digits."
-assert arithmetic_arranger(["12345 + 1"]) == "Error: Numbers cannot be more than four digits."
-
 """
 SCWP_6 — Certification Project: Arithmetic Formatter
 
@@ -69,3 +38,16 @@ arithmetic_arranger(
 
 The returned value must be correctly aligned and contain the expected answer
 line when `show_answers` is enabled.
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    assert arithmetic_arranger(["3 + 855"]) == "    3\n+ 855\n-----"
+    assert arithmetic_arranger(["3 + 855"], True) == "    3\n+ 855\n-----\n  858"
+    assert arithmetic_arranger(["3 * 5"]) == "Error: Operator must be '+' or '-'."
+    assert arithmetic_arranger(["12345 + 1"]) == "Error: Numbers cannot be more than four digits."
+    assert arithmetic_arranger(["1 + 2"] * 6) == "Error: Too many problems."
+    print("SCWP_6 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

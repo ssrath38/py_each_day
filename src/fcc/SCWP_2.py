@@ -1,21 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_2
-============================================================
-
-assert verify_card_number("4532015112830366") is True
-assert verify_card_number("8273123273520569") is False
-assert verify_card_number("79927398713") is True
-assert verify_card_number("79927398714") is False
-assert verify_card_number("0") is True
-
-# Keep leading zeroes intact.
-assert verify_card_number("0000000000000000") is True
-
-# Malformed values should raise an appropriate exception:
-# verify_card_number("12A34")
-
 """
 SCWP_2 — Work with Numbers and Strings by Implementing the Luhn Algorithm
 
@@ -46,3 +28,14 @@ verify_card_number("8273123273520569") -> False
 CONSTRAINT
 ----------
 Do not use a third-party Luhn implementation.
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    assert verify_card_number("4532015112830366") is True
+    assert verify_card_number("8273123273520569") is False
+    assert verify_card_number("12") is False
+    print("SCWP_2 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

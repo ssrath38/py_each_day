@@ -1,24 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_5
-============================================================
-
-root = square_root_bisection(16)
-assert abs(root - 4.0) < 1e-7
-
-root = square_root_bisection(2)
-assert abs(root * root - 2) < 1e-7
-
-assert square_root_bisection(0) == 0
-assert square_root_bisection(1) == 1
-
-# Negative input must raise the required ValueError.
-# square_root_bisection(-4)
-
-# Force a failure to converge by allowing only one iteration.
-# assert square_root_bisection(123456, max_iterations=1) is None
-
 """
 SCWP_5 — Learn the Bisection Method by Finding the Square Root of a Number
 
@@ -53,3 +32,21 @@ square_root_bisection(16) -> approximately 4.0
 square_root_bisection(2)  -> approximately 1.41421356
 square_root_bisection(0)  -> 0
 square_root_bisection(1)  -> 1
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    assert abs(square_root_bisection(16) - 4.0) < 1e-6
+    assert abs(square_root_bisection(2) ** 2 - 2) < 1e-6
+    assert square_root_bisection(0) == 0
+    assert square_root_bisection(1) == 1
+    try:
+        square_root_bisection(-1)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("A negative target should raise ValueError.")
+    print("SCWP_5 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

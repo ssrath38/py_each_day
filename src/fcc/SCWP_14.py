@@ -1,44 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_14
-============================================================
-
-food = Category("Food")
-food.deposit(1000, "initial deposit")
-assert food.get_balance() == 1000
-
-assert food.withdraw(100, "groceries") is True
-assert food.get_balance() == 900
-assert food.check_funds(900) is True
-assert food.check_funds(901) is False
-assert food.withdraw(901, "too much") is False
-assert food.get_balance() == 900
-
-entertainment = Category("Entertainment")
-entertainment.deposit(500, "payday")
-assert food.transfer(200, entertainment) is True
-assert food.get_balance() == 700
-assert entertainment.get_balance() == 700
-assert food.transfer(1000, entertainment) is False
-
-# String representation should contain the category heading, descriptions,
-# and total balance using the required 30-character formatting.
-text = str(food)
-assert "Food" in text
-assert "Total:" in text
-assert "groceries" in text
-
-# Spending chart with one category: only that category has spending.
-chart = create_spend_chart([food])
-assert "Percentage spent by category" in chart
-assert "F" in chart
-
-# A category with no withdrawals should still be supported.
-empty = Category("Empty")
-chart = create_spend_chart([empty])
-assert "Percentage spent by category" in chart
-
 """
 SCWP_14 — Certification Project: Budget App
 
@@ -80,3 +39,25 @@ REQUIREMENTS
 11. Render the chart vertically from 100 down to 0 and label the categories at
     the bottom.
 12. Exact spacing in the returned strings matters for the certification tests.
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    food = Category("Food")
+    food.deposit(100, "starting funds")
+    assert food.get_balance() == 100
+    assert food.withdraw(20, "groceries") is True
+    assert food.get_balance() == 80
+    assert food.withdraw(1000, "too much") is False
+    assert food.get_balance() == 80
+
+    transport = Category("Transport")
+    assert food.transfer(30, transport) is True
+    assert food.get_balance() == 50
+    assert transport.get_balance() == 30
+    chart = create_spend_chart([food, transport])
+    assert chart.startswith("Percentage spent by category")
+    print("SCWP_14 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

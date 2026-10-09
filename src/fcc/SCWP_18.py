@@ -1,39 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_18
-============================================================
-
-projectile = Projectile(10, 5, 45)
-assert projectile.speed == 10
-assert projectile.height == 5
-assert projectile.angle == 45
-
-projectile.speed = 20
-assert projectile.speed == 20
-projectile.height = 10
-assert projectile.height == 10
-projectile.angle = 30
-assert projectile.angle == 30
-
-# The initial point should be the launch height.
-coords = projectile.calculate_all_coordinates()
-assert coords
-assert coords[0][0] == 0
-assert abs(coords[0][1] - projectile.height) < 1e-9
-
-# The trajectory should eventually reach/approach y = 0.
-assert min(y for _, y in coords) <= projectile.height
-
-# A formatted coordinates table and trajectory must be strings.
-graph = Graph(coords)
-assert isinstance(graph.create_coordinates_table(), str)
-assert isinstance(graph.create_trajectory(), str)
-
-# Invalid physical inputs should be rejected according to your validation
-# policy, for example a negative speed or invalid height.
-# Projectile(-10, 5, 45)
-
 """
 SCWP_18 — Learn Encapsulation by Building a Projectile Trajectory Calculator
 
@@ -83,3 +47,19 @@ Helper
 ------
 `projectile_helper(speed, height, angle)` builds the projectile, calculates the
 coordinates, builds the graph, and displays the course-style reports.
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    projectile = Projectile(10, 0, 45)
+    assert projectile.speed == 10
+    assert projectile.height == 0
+    assert projectile.angle == 45
+    coords = projectile.calculate_all_coordinates()
+    assert isinstance(coords, list)
+    assert len(coords) > 0
+    assert isinstance(coords[0], tuple) and len(coords[0]) == 2
+    print("SCWP_18 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

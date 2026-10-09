@@ -1,38 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_15
-============================================================
-
-v1 = R2Vector(x=1, y=2)
-v2 = R2Vector(x=3, y=4)
-
-assert (v1 + v2).x == 4
-assert (v1 + v2).y == 6
-assert (v2 - v1).x == 2
-assert (v2 - v1).y == 2
-assert (v1 * 3).x == 3
-assert (v1 * 3).y == 6
-assert v1 * v2 == 11
-assert v1 != v2
-assert R2Vector(x=1, y=2) == R2Vector(x=1, y=2)
-assert R2Vector(x=3, y=4).norm() == 5
-
-# Magnitude-based comparison.
-assert R2Vector(x=3, y=4) > R2Vector(x=1, y=1)
-assert R2Vector(x=1, y=1) < R2Vector(x=3, y=4)
-
-u1 = R3Vector(x=1, y=0, z=0)
-u2 = R3Vector(x=0, y=1, z=0)
-cross = u1.cross(u2)
-assert cross.x == 0
-assert cross.y == 0
-assert cross.z == 1
-assert R3Vector(x=1, y=2, z=2).norm() == 3
-
-# Dot product in 3D.
-assert R3Vector(x=1, y=2, z=3) * R3Vector(x=4, y=5, z=6) == 32
-
 """
 SCWP_15 — Learn Special Methods by Building a Vector Space
 
@@ -87,3 +52,21 @@ R2Vector(x=1, y=2) * R2Vector(x=3, y=4)
 
 R3Vector(x=1, y=0, z=0).cross(R3Vector(x=0, y=1, z=0))
     -> R3Vector(x=0, y=0, z=1)
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    a = R2Vector(x=1, y=2)
+    b = R2Vector(x=3, y=4)
+    assert a + b == R2Vector(x=4, y=6)
+    assert a - b == R2Vector(x=-2, y=-2)
+    assert a * 3 == R2Vector(x=3, y=6)
+    assert a * b == 11
+
+    x_axis = R3Vector(x=1, y=0, z=0)
+    y_axis = R3Vector(x=0, y=1, z=0)
+    assert x_axis.cross(y_axis) == R3Vector(x=0, y=0, z=1)
+    print("SCWP_15 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

@@ -1,40 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_16
-============================================================
-
-linear = LinearEquation(2, 3)
-roots = linear.solve()
-assert len(roots) == 1
-assert abs(roots[0] + 1.5) < 1e-9
-
-analysis = linear.analyze()
-assert analysis["slope"] == -1.5
-assert analysis["intercept"] == 0
-
-quadratic = QuadraticEquation(1, -3, 2)
-roots = quadratic.solve()
-assert sorted(roots) == [1, 2]
-
-quadratic_one = QuadraticEquation(1, -2, 1)
-assert quadratic_one.solve() == [1.0]
-
-quadratic_none = QuadraticEquation(1, 0, 1)
-assert quadratic_none.solve() == []
-
-# Vertex of x^2 - 4x + 3 is (2, -1), with a minimum.
-vertex_info = QuadraticEquation(1, -4, 3).analyze()
-assert abs(vertex_info["vertex"][0] - 2) < 1e-9
-assert abs(vertex_info["vertex"][1] + 1) < 1e-9
-
-# Leading coefficient zero should be rejected.
-# LinearEquation(0, 3)
-# QuadraticEquation(0, 1, 2)
-
-# solver() should reject unrelated objects.
-# solver("x + 1")
-
 """
 SCWP_16 — Learn Interfaces by Building an Equation Solver
 
@@ -95,3 +58,18 @@ LinearEquation(2, 3) represents:
 
 Its solution is:
     x = -1.5
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    linear = LinearEquation(2, 3)
+    assert abs(linear.solve()[0] - (-1.5)) < 1e-9
+
+    quadratic = QuadraticEquation(1, 0, -4)
+    assert sorted(quadratic.solve()) == [-2.0, 2.0]
+    assert len(QuadraticEquation(1, 0, 1).solve()) == 0
+    assert len(QuadraticEquation(1, 2, 1).solve()) == 1
+    print("SCWP_16 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

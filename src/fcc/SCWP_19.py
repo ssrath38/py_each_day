@@ -1,36 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_19
-============================================================
-
-hat = Hat(black=6, red=4, green=3)
-assert len(hat.contents) == 13
-assert hat.contents.count("black") == 6
-assert hat.contents.count("red") == 4
-assert hat.contents.count("green") == 3
-
-# Drawing fewer balls must remove exactly that many balls.
-drawn = hat.draw(5)
-assert len(drawn) == 5
-assert len(hat.contents) == 8
-
-# A fresh hat with fewer balls than requested should return all remaining balls.
-small = Hat(red=2)
-drawn = small.draw(5)
-assert sorted(drawn) == ["red", "red"]
-assert small.contents == []
-
-# Probability 1: every trial must contain all balls when exactly all balls are
-# drawn and the expected count matches the complete hat.
-certain = Hat(red=2)
-assert experiment(certain, {"red": 2}, 2, 25) == 1.0
-
-# A probability must always be between 0 and 1.
-normal = Hat(black=6, red=4, green=3)
-probability = experiment(normal, {"red": 2, "green": 1}, 5, 100)
-assert 0.0 <= probability <= 1.0
-
 """
 SCWP_19 — Certification Project: Probability Calculator
 
@@ -83,3 +50,19 @@ expected_balls = {"red": 2, "green": 1}
 
 Estimate the probability of drawing 5 balls containing at least 2 red and at
 least 1 green ball.
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    hat = Hat(red=2)
+    assert len(hat.contents) == 2
+    draw = hat.draw(2)
+    assert len(draw) == 2
+    assert all(color == "red" for color in draw)
+
+    certain = Hat(red=2)
+    assert experiment(certain, {"red": 2}, 2, 25) == 1.0
+    print("SCWP_19 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

@@ -177,41 +177,64 @@ CONSTRAINTS
 - Keep the two cipher algorithms separate.
 - The dispatcher functions decide which cipher to use.
 - Solve the problem yourself; no solution is included.
-
-
-============================================================
-TEST CASES — SCWP_1
-============================================================
-
-Run these after implementing the required functions.
-
-# Caesar
-assert caesar_cipher("Hello, World!", 3) == "Khoor, Zruog!"
-assert caesar_cipher("Khoor, Zruog!", 3, -1) == "Hello, World!"
-assert caesar_cipher("xyz", 3) == "abc"
-assert caesar_cipher("ABC", 2) == "CDE"
-assert caesar_cipher("A-B-C", 26) == "A-B-C"
-
-# Vigenère
-assert vigenere_cipher("hello", "abc") == "hfnlp"
-assert vigenere_cipher("hfnlp", "abc", -1) == "hello"
-assert vigenere_cipher("Attack at Dawn!", "LEMON") == "Lxfopv ef Rnhr!"
-
-# Common interface
-assert encrypt("Hello", "caesar", 3) == "Khoor"
-assert decrypt("Khoor", "caesar", 3) == "Hello"
-assert encrypt("Hello", "vigenere", "abc") == "Hfnlp"
-assert decrypt("Hfnlp", "vigenere", "abc") == "Hello"
-
-# Round-trip property
-for cipher, key in [("caesar", 7), ("vigenere", "coding")]:
-    message = "Attack at Dawn! 123"
-    assert decrypt(encrypt(message, cipher, key), cipher, key) == message
-
-# Invalid input
-# These should raise an appropriate exception:
-# encrypt("hello", "unknown", 3)
-# encrypt("hello", "caesar", "3")
-# encrypt("hello", "vigenere", "")
-
 """
+
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+
+def caesar_cipher(message, key):
+    index = 0
+    decrypted_message = ""
+    for i in message:
+        new_index = index + key
+        decrypted_message.append()
+
+
+def vigenere_cipher(message, key):
+    pass
+
+
+def encrypt():
+    pass
+
+
+def decrypt():
+    pass
+
+
+def main():
+    option = input("Enter which cipher you want to use (caesar / vigenere): ")
+    if option == "caesar":
+        pass
+
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    # Caesar
+    assert caesar_cipher("Hello, World!", 3) == "Khoor, Zruog!"
+    assert caesar_cipher("Khoor, Zruog!", 3, -1) == "Hello, World!"
+    assert caesar_cipher("xyz", 3) == "abc"
+    assert caesar_cipher("ABC", 2) == "CDE"
+    assert caesar_cipher("A-B-C", 26) == "A-B-C"
+
+    # Vigenère
+    assert vigenere_cipher("hello", "abc") == "hfnlp"
+    assert vigenere_cipher("hfnlp", "abc", -1) == "hello"
+    assert vigenere_cipher("Attack at Dawn!", "LEMON") == "Lxfopv ef Rnhr!"
+
+    # User-selectable common interface
+    assert encrypt("Hello", "caesar", 3) == "Khoor"
+    assert decrypt("Khoor", "caesar", 3) == "Hello"
+    assert encrypt("Hello", "vigenere", "abc") == "Hfnlp"
+    assert decrypt("Hfnlp", "vigenere", "abc") == "Hello"
+
+    # Round-trip: encryption followed by decryption restores the message.
+    for cipher, key in [("caesar", 7), ("vigenere", "coding")]:
+        message = "Attack at Dawn! 123"
+        assert decrypt(encrypt(message, cipher, key), cipher, key) == message
+
+    print("SCWP_1 tests passed.")
+
+
+if __name__ == "__main__":
+    run_tests()

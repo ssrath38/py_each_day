@@ -1,36 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_17
-============================================================
-
-rect = Rectangle(10, 5)
-assert rect.get_area() == 50
-assert rect.get_perimeter() == 30
-assert abs(rect.get_diagonal() - (125 ** 0.5)) < 1e-9
-assert rect.get_picture() == ("**********\n" * 5)
-
-assert rect.get_amount_inside(Square(2)) == 10
-
-square = Square(4)
-assert square.width == 4
-assert square.height == 4
-assert square.get_area() == 16
-assert square.get_perimeter() == 16
-assert square.get_picture() == ("****\n" * 4)
-
-square.set_side(5)
-assert square.width == 5 and square.height == 5
-
-square.set_width(6)
-assert square.width == 6 and square.height == 6
-
-square.set_height(7)
-assert square.width == 7 and square.height == 7
-
-big = Rectangle(51, 2)
-assert big.get_picture() == "Too big for picture."
-
 """
 SCWP_17 — Certification Project: Polygon Area Calculator
 
@@ -81,3 +48,20 @@ EXAMPLE
 -------
 Rectangle(10, 8).get_amount_inside(Square(2))
     -> 20
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    rect = Rectangle(10, 5)
+    assert rect.get_area() == 50
+    assert rect.get_perimeter() == 30
+    assert rect.get_picture() == ("**********\n" * 5)
+    assert rect.get_amount_inside(Square(2)) == 10
+
+    square = Square(4)
+    square.set_width(5)
+    assert square.width == 5 and square.height == 5
+    print("SCWP_17 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

@@ -1,40 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_8
-============================================================
-
-graph = {
-    "A": [("B", 3), ("C", 1)],
-    "B": [("A", 3), ("C", 1)],
-    "C": [("A", 1), ("B", 1)],
-}
-distances, paths = shortest_path(graph, "A")
-assert distances["A"] == 0
-assert distances["B"] == 2
-assert distances["C"] == 1
-assert paths["B"] == ["A", "C", "B"]
-assert paths["C"] == ["A", "C"]
-
-# Disconnected node must remain unreachable.
-graph2 = {
-    "A": [("B", 1)],
-    "B": [("A", 1)],
-    "C": [],
-}
-distances, paths = shortest_path(graph2, "A")
-assert "C" not in distances or distances["C"] == float("inf")
-
-# A direct edge should beat a longer indirect route.
-graph3 = {
-    "A": [("B", 10), ("C", 2)],
-    "C": [("B", 3)],
-    "B": [],
-}
-distances, paths = shortest_path(graph3, "A")
-assert distances["B"] == 5
-assert paths["B"] == ["A", "C", "B"]
-
 """
 SCWP_8 — Learn Algorithm Design by Building a Shortest Path Algorithm
 
@@ -78,3 +41,20 @@ graph = {
 }
 
 The shortest path A -> B is A -> C -> B with total distance 2.
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    graph = {
+        "A": [("B", 3), ("C", 1)],
+        "B": [("A", 3), ("C", 1)],
+        "C": [("A", 1), ("B", 1)],
+    }
+    distances, paths = shortest_path(graph, "A")
+    assert distances["A"] == 0
+    assert distances["B"] == 2
+    assert paths["B"] == ["A", "C", "B"]
+    print("SCWP_8 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

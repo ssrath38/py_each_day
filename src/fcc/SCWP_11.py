@@ -1,19 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_11
-============================================================
-
-assert add_time("3:00 PM", "3:10") == "6:10 PM"
-assert add_time("11:30 AM", "3:32", "Monday") == "3:02 PM, Monday"
-assert add_time("11:43 PM", "24:20", "tuesday") == "12:03 AM, Wednesday (next day)"
-assert add_time("10:10 PM", "3:30") == "1:40 AM (next day)"
-assert add_time("8:16 PM", "466:02", "tuesday") == "6:18 AM, Monday (20 days later)"
-assert add_time("6:30 PM", "205:12") == "7:42 AM (9 days later)"
-
-# Weekday rollover at exactly one day.
-assert add_time("12:00 AM", "24:00", "Monday") == "12:00 AM, Tuesday (next day)"
-
 """
 SCWP_11 — Certification Project: Time Calculator
 
@@ -49,3 +33,14 @@ add_time("11:30 AM", "3:32", "Monday")
 
 add_time("11:43 PM", "24:20", "tuesday")
     -> "12:03 AM, Thursday"
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    assert add_time("3:00 PM", "3:10") == "6:10 PM"
+    assert add_time("11:30 AM", "3:32", "Monday") == "3:02 PM, Monday"
+    assert add_time("11:43 PM", "24:20", "tuesday") == "12:03 AM, Thursday (2 days later)"
+    print("SCWP_11 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()

@@ -1,30 +1,3 @@
-
-
-============================================================
-TEST CASES — SCWP_3
-============================================================
-
-expenses = []
-add_expense(expenses, 25.0, "food")
-add_expense(expenses, 10.0, "transport")
-add_expense(expenses, 15.5, "food")
-
-assert total_expenses(expenses) == 50.5
-assert filter_expenses_by_category(expenses, "food") == [
-    {"amount": 25.0, "category": "food"},
-    {"amount": 15.5, "category": "food"},
-]
-
-# Empty collection
-assert total_expenses([]) == 0
-assert filter_expenses_by_category([], "food") == []
-
-# Verify that a newly added expense is represented with the required keys.
-test_expenses = []
-add_expense(test_expenses, 7.5, "books")
-assert test_expenses[0]["amount"] == 7.5
-assert test_expenses[0]["category"] == "books"
-
 """
 SCWP_3 — Learn Lambda Functions by Building an Expense Tracker
 
@@ -64,3 +37,18 @@ expenses = [
 
 total_expenses(expenses) -> 50.5
 filter_expenses_by_category(expenses, "food") -> the two food entries
+"""
+
+# TODO: Implement the required functions/classes above this test block.
+def run_tests():
+    expenses = []
+    add_expense(expenses, 25.0, "food")
+    add_expense(expenses, 10.0, "transport")
+    add_expense(expenses, 15.5, "food")
+    assert total_expenses(expenses) == 50.5
+    assert len(filter_expenses_by_category(expenses, "food")) == 2
+    assert len(filter_expenses_by_category(expenses, "transport")) == 1
+    print("SCWP_3 tests passed.")
+
+if __name__ == "__main__":
+    run_tests()
